@@ -320,6 +320,14 @@
     @media (prefers-reduced-motion: reduce) {
       .material, .hover-preview { transition: none; }
     }
+    .performance-resources { margin-top: 28px; }
+    .performance-resources h3 { margin: 0 0 12px; font: 400 22px/1.2 var(--serif); }
+    .performance-resources .materials { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .performance-card .material-preview { color: inherit; text-decoration: none; }
+    .performance-copy { padding: 10px 9px; font-size: 12px; line-height: 1.45; }
+    .performance-copy strong { display: block; margin-bottom: 4px; font: 700 16px/1.15 var(--serif); }
+    .performance-programme { display: inline-block; margin: 0 9px 8px; font-size: 12px; color: inherit; }
+    .performance-broadcast { display: grid; place-items: center; padding: 10px; color: #fff; font: 700 22px/1.2 var(--serif); text-align: center; }
   </style>
 </head>
 <body>
@@ -472,6 +480,35 @@
                 </a>
               </article>
             </div>
+
+            <div class="performance-resources" aria-labelledby="transducer-performances">
+              <h3 id="transducer-performances">Performance Recordings</h3>
+              <div class="materials">
+                <article class="material video performance-card">
+                  <a class="material-preview" href="https://www.youtube.com/watch?v=YQuq3iet9zA&amp;t=410s" target="_blank" rel="noopener"
+                     data-preview="https://www.youtube.com/embed/YQuq3iet9zA?start=410" data-provider="youtube" data-kind="video"
+                     data-title="Charles Ives · Three Quarter-Tone Pieces (excerpt)" data-format="YouTube" data-source-label="YouTube ↗">
+                    <div class="material-art" aria-hidden="true">
+                      <img class="still" src="https://i.ytimg.com/vi/YQuq3iet9zA/hqdefault.jpg" alt="" loading="lazy" decoding="async" width="480" height="360">
+                    </div>
+                    <div class="performance-copy">
+                      <strong>Ives: Three Quarter-Tone Pieces</strong>
+                      Clara Murnig · Stuttgart, 2017<br>Official video excerpt at 6:50
+                    </div>
+                  </a>
+                  <a class="performance-programme" href="https://www.musikschulen.de/projekte/musikschulkongress/musikschulkongress2017/gesamtprogramm/ag29/index.html" target="_blank" rel="noopener">Concert documentation ↗</a>
+                </article>
+                <article class="material video performance-card">
+                  <a class="material-preview" href="https://www.swr.de/donaueschinger-musiktage/archiv/livestream-swr-symphonieorchester-donaueschinger-musiktage-22-10-2023-100.html" target="_blank" rel="noopener">
+                    <div class="material-art performance-broadcast" aria-hidden="true">SWR Web Concerts</div>
+                    <div class="performance-copy">
+                      <strong>Takasugi: Piano Concerto</strong>
+                      Roger Admiral · Donaueschingen, 2023<br>World premiere · SWR concert video ↗
+                    </div>
+                  </a>
+                </article>
+              </div>
+            </div>
           </section>
         </div>
       </main>
@@ -585,6 +622,7 @@
       card.addEventListener("pointerleave", hideHover);
 
       link.addEventListener("click", (event) => {
+        if (!link.dataset.preview && !link.hasAttribute("data-embedded-pdf")) return;
         if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey || typeof dialog.showModal !== "function") return;
         event.preventDefault();
         hideHover();
